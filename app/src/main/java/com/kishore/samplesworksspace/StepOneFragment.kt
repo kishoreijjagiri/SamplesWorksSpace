@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +29,7 @@ class StepOneFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var  name :TextView
 
 
 
@@ -42,12 +45,19 @@ class StepOneFragment : Fragment() {
         val root =inflater.inflate(R.layout.fragment_step_one,container,false);
 
         val button2 :Button =root.findViewById(R.id.button2);
+        name=root.findViewById(R.id.username)
 
         button2.setOnClickListener {
             Navigation.findNavController(root).navigate(R.id.action_stepOneFragment_to_step_Two_Fragment)
         }
         // Inflate the layout for this fragment
         return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        name.setText(arguments?.getString("username"))
     }
 
 
